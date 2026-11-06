@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
@@ -28,15 +27,20 @@ public class Article {
     @Column(name = "content", nullable = false)
     private String content;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @Builder
-    public Article(String title, String content) {
+    public Article(String title, String content, String imageUrl) {
         this.title = title;
         this.content = content;
+        this.imageUrl = imageUrl;
     }
 
-    public void update(String title, String content){
+    public void update(String title, String content, String imageUrl){
         this.title = title;
         this.content = content;
+        this.imageUrl = imageUrl;
     }
 
     @CreatedDate
@@ -46,5 +50,6 @@ public class Article {
     @LastModifiedDate
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
 
 }
